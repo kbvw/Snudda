@@ -594,7 +594,7 @@ class Snudda(object):
     ############################################################################
 
     @staticmethod
-    def compile_mechanisms(mech_dir=None, snudda_data=None):
+    def compile_mechanisms(mech_dir=None, snudda_data=None, use_coreneuron=False):
 
         if not mech_dir:
             mech_dir = os.path.realpath(snudda_path.snudda_parse_path(os.path.join("$DATA", "neurons", "mechanisms"),
@@ -609,8 +609,12 @@ class Snudda(object):
 
             if pc.id() == 0:
                 # Only run this on master node
-                print(f"Running on master node:  nrnivmodl {mech_dir}")
-                os.system(f"nrnivmodl {mech_dir}")
+                if use_coreneuron:
+                    compile_command = f"nrnivmodl -coreneuron {mech_dir}"
+                else:
+                    compile_command = f"nrnivmodl {mech_dir}"
+                print("Running on master node: " + compile_command)
+                os.system(compile_command)
             else:
                 print("Worker waiting for master node to compile NEURON modules.")
 
@@ -667,7 +671,8 @@ class Snudda(object):
                             record_all=args.record_all,
                             simulation_config=args.simulation_config,
                             export_core_neuron=args.exportCoreNeuron,
-                            verbose=args.verbose)
+                            verbose=args.verbose,
+                            use_coreneuron=args.coreneuron)
 
         sim.clear_neuron()
 
@@ -685,7 +690,8 @@ class Snudda(object):
                  record_all=False,
                  simulation_config=None,
                  export_core_neuron=False,
-                 verbose=False):
+                 verbose=False,
+                 use_coreneuron=False):
 
         start = timeit.default_timer()
 
@@ -730,7 +736,7 @@ class Snudda(object):
                     mech_dir = os.path.realpath(snudda_path.snudda_parse_path(os.path.join("$DATA", "neurons",
                                                                                            "mechanisms_ptr"),
                                                                               snudda_data=snudda_data))
-        self.compile_mechanisms(mech_dir=mech_dir)
+        self.compile_mechanisms(mech_dir=mech_dir, use_coreneuron=use_coreneuron)
 
         save_dir = os.path.join(os.path.dirname(network_file), "simulation")
 

@@ -122,6 +122,7 @@ def snudda_cli():
 
     simulate_parser = sub_parsers.add_parser("simulate")
     simulate_parser.add_argument("path", help="Location of network")
+    simulate_parser.add_argument("-coreneuron", action="store_true")
     simulate_parser.add_argument("--networkFile", help="Network file, if not network-synapses.hdf5",
                                  dest="network_file", default=None)
     simulate_parser.add_argument("--inputFile", help="Input hdf5 file (for simulation)",
