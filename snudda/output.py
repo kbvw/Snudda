@@ -8,6 +8,21 @@ def spikes_to_text(
    time_range: Optional[tuple[float, float]] = None,
    neurons: Optional[Iterable[str]] = None,
 ):
+    """Write spikes from Snudda HDF5 output to plain text.
+
+    Parameters
+    ----------
+    h5_file : str
+        Name of input HDF5 file to read the spikes from.
+    text_file : str
+        Name of text file to write the spikes to.
+    time_range : tuple[float, float], optional
+        A time range (start, stop): if passed, only spikes at
+        start <= t < stop will be written to the output.
+    neurons : Iterable[str], optional
+        An iterable of neuron IDs: if passed, only spikes from
+        neurons in the iterable will be written to the output.
+    """
 
     with (
         h5py.File(h5_file) as in_data,
