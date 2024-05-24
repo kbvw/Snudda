@@ -1,0 +1,4 @@
+[submodule "BasalGangliaData"]
+	path = BasalGangliaData
+	url = git@github.com:kbvw/BasalGangliaData.git
+	branch = coreneuron
