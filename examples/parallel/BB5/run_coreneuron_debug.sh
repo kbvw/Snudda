@@ -33,4 +33,4 @@ nrnivmodl -coreneuron $SNUDDA_DATA/neurons/mechanisms
 cd ..
 
 # Run simulation
-srun -n 4 $JOBDIR/x86_64/special -mpi -python $SNUDDA_DIR/simulate/simulate.py $JOBDIR/network-synapses.hdf5 $JOBDIR/input-spikes.hdf5 -coreneuron --time 3.5
+srun $JOBDIR/x86_64/special -mpi -python $SNUDDA_DIR/simulate/simulate.py $JOBDIR/network-synapses.hdf5 $JOBDIR/input-spikes.hdf5 -coreneuron --time 3.5
