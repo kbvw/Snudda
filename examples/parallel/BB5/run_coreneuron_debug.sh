@@ -2,12 +2,12 @@
 #SBATCH --account=proj16 
 #SBATCH --partition=prod
 #SBATCH --time=08:00:00
-#SBATCH --nodes=4 
+#SBATCH --nodes=1
+#SBATCH --cpus-per-task=2
 #SBATCH --exclusive 
 #SBATCH --mem=0
 #SBATCH --constraint=uc3
 #SBATCH --output=log/snudda_coreneuron_debug.log
-#SBATCH --error=log/snudda_coreneuron_debug.error.log
 
 # Set up environment on BB5
 module load unstable git gcc hpe-mpi python
