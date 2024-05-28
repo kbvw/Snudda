@@ -24,7 +24,7 @@ export SNUDDA_DIR=$PWD/snudda
 export SNUDDA_DATA=$PWD/BasalGangliaData/data
 
 # Directory as created in `create_network` script
-JOBDIR=$PWD/test_100
+JOBDIR=$PWD/test_10000
 
 # Compile mod files
 cd $JOBDIR

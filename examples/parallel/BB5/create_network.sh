@@ -1,8 +1,8 @@
 #!/bin/sh
 
 # Network size: Dardel example uses 10k, using 100 here for a small test
-JOBDIR=$PWD/test_100
-SIMSIZE=100
+JOBDIR=$PWD/test_10000
+SIMSIZE=10000
 
 # Environment variables read by Snudda
 export SNUDDA_DIR=$PWD/snudda
